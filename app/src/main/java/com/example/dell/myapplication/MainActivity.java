@@ -26,6 +26,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView mTextView;
     private MyDbMessager mDb;
     private EditText mEt;
+    private Button mButton8;
+    private Button mButton9;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +62,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mButton7.setOnClickListener(this);
         mEt = (EditText) findViewById(R.id.et);
         mEt.setOnClickListener(this);
+        mButton8 = (Button) findViewById(R.id.button8);
+        mButton8.setOnClickListener(this);
+        mButton9 = (Button) findViewById(R.id.button9);
+        mButton9.setOnClickListener(this);
     }
 
     @Override
@@ -81,13 +87,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 ArrayList<Student> students = mDb.queryAllData();
                 if (students == null || students.isEmpty()) {
                     mTextView.setText(null);
-                    Toast.makeText(MainActivity .this,"表为空",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "表为空", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 StringBuffer buffer = new StringBuffer();
                 for (int i = 0; i < students.size(); i++) {
                     Student student = students.get(i);
-                    buffer.append(student.getId()+"/"+student.getNumber() + "/" + student.getFileSize() + "/");
+                    buffer.append(student.getId() + "/" + student.getNumber() + "/" + student.getFileSize() + "/");
                     buffer.append(student.getPricet() + "/" + student.getName() + "\n=====");
 
                 }
@@ -116,10 +122,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 String string = getString();
                 mDb.delectPositon(Integer.parseInt(string));
                 break;
-            case R.id.button7:
+            case R.id.button7://updata
                 if (getPositon()) return;
                 String string1 = getString();
                 mDb.delectPositonAndroid(Integer.parseInt(string1));
+                break;
+            case R.id.button8:
+                break;
+            case R.id.button9:
                 break;
         }
     }

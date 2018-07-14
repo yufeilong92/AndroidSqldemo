@@ -76,6 +76,21 @@
                 android:text="delectOneAndorid"
                 android:textAllCaps="false" />
 
+
+
+            <Button
+                android:id="@+id/button8"
+                android:textAllCaps="false"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="updata" />
+
+            <Button
+                android:textAllCaps="false"
+                android:id="@+id/button9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="updataandoid" />
             <TextView
                 android:id="@+id/textView"
                 android:layout_width="match_parent"
