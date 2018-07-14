@@ -26,6 +26,7 @@ public class MyDbMessager {
     public Context mContext;
     private final String dou = ",";
     private final String douAfter = "',";
+    private final String doufolate = "'";
     private final String douBefore = ",'";
     private SQLiteDatabase mreadableDatabase;
     private SQLiteDatabase mRdDb;
@@ -71,19 +72,6 @@ public class MyDbMessager {
         return false;
     }
 
-    public void updataData(Student student) {
-        if (isOnlyRead()) return;
-        StringBuffer buffer = new StringBuffer();
-        buffer.append("insert into " + MyDbSqlite.TABLE_NAME);
-        buffer.append("(pricet,name,filesize,number) VALUES (");
-        buffer.append(student.getPricet());
-        buffer.append(douBefore + student.getName() + douAfter);
-        buffer.append(student.getFileSize());
-        buffer.append(dou);
-        buffer.append(student.getNumber());
-        buffer.append(")");
-        mRdDb.execSQL(buffer.toString());
-    }
 
     public ArrayList<Student> queryAllData() {
         StringBuffer buffer = getStringBuffer();
@@ -141,16 +129,16 @@ public class MyDbMessager {
         if (cursor == null) {
             return;
         }
-        int position = cursor.getPosition();
         StringBuffer buffer1 = getStringBuffer();
-        buffer1.append("updata " + MyDbSqlite.TABLE_NAME);
+        buffer1.append("update " + MyDbSqlite.TABLE_NAME);
         buffer1.append(" set pricet=" + student.getPricet());
         buffer1.append(dou);
-        buffer1.append(" name=" + douAfter + student.getName() + douBefore);
+        buffer1.append(" name=" +doufolate+ student.getName() + douAfter);
         buffer1.append(" filesize=" + student.getFileSize());
-        buffer.append(dou);
-        buffer.append(" number = " + student.getNumber());
-        mRdDb.execSQL(buffer.toString());
+        buffer1.append(dou);
+        buffer1.append(" number = " + student.getNumber());
+        buffer1.append(" where id ="+postion);
+        mRdDb.execSQL(buffer1.toString());
     }
 
     public void updataAndroid(int postion, Student student) {
@@ -221,5 +209,4 @@ public class MyDbMessager {
             Log.e(TAG, "delectPositon: errror");
         }
     }
-
 }

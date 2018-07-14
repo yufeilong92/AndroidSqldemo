@@ -93,8 +93,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 StringBuffer buffer = new StringBuffer();
                 for (int i = 0; i < students.size(); i++) {
                     Student student = students.get(i);
-                    buffer.append(student.getId() + "/" + student.getNumber() + "/" + student.getFileSize() + "/");
-                    buffer.append(student.getPricet() + "/" + student.getName() + "\n=====");
+                    buffer.append(student.getId() + "==id/" + student.getNumber() + "/" + student.getFileSize() + "/");
+                    buffer.append(student.getPricet() + "/" + student.getName() + "\n=====\n");
 
                 }
                 mTextView.setText(buffer.toString());
@@ -127,9 +127,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 String string1 = getString();
                 mDb.delectPositonAndroid(Integer.parseInt(string1));
                 break;
-            case R.id.button8:
+            case R.id.button8://更新
+                if (getPositon()) return;
+                String string2 = getString();
+                Student student = new Student();
+                student.setFileSize(123465789);
+                student.setName("布尔玛");
+                student.setNumber(8542);
+                student.setPricet(125.5f);
+                mDb.updataData(Integer.parseInt(string2), student);
                 break;
-            case R.id.button9:
+            case R.id.button9://Android 更新
+                if (getPositon()) return;
+                String string22 = getString();
+                Student student1 = new Student();
+                student1.setFileSize(123465789);
+                student1.setName("布拉");
+                student1.setNumber(8542);
+                student1.setPricet(125.5f);
+                mDb.updataAndroid(Integer.parseInt(string22),student1);
                 break;
         }
     }
